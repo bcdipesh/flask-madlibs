@@ -5,15 +5,19 @@ Home
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to Madlibs</h1>
-<p>Please answer the following questions to generate a story</p>
+<div class="container mt-4">
+    <h1>Welcome to Madlibs</h1>
+    <p>Please answer the following questions to generate a story</p>
+    <form action="/generate-story">
+        {% for question in questions %}
+        <div class="form-group">
+            <label class="form-label mt-4" for={{question}}>{{question.title()}}</label>
+            <input class="form-control" type="text" name={{question}} id={{question}}
+                placeholder="Answer for {{question}}">
+        </div>
+        {% endfor %}
 
-<form action="/generate-story">
-    {% for question in questions %}
-    <p><label for={{question}}>{{question.title()}}</label></p>
-    <p><input type="text" name={{question}} id={{question}} placeholder="Answer for {{question}}"></p>
-    {% endfor %}
-
-    <button type="submit">Generate Story</button>
-</form>
+        <button type="submit" class="btn btn-outline-primary mt-4">Generate Story</button>
+    </form>
+</div>
 {% endblock %}
